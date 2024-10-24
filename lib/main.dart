@@ -4,7 +4,7 @@ import 'package:tarea_6/views/clima.dart';
 import 'package:tarea_6/views/age.dart';
 import 'package:tarea_6/views/gender.dart';
 import 'package:tarea_6/views/home.dart';
-import 'package:tarea_6/views/pais.dart';
+import 'package:tarea_6/views/country.dart';
 import 'package:tarea_6/views/post.dart';
 
 void main() {
@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
         '/': (context) => const HomePage(),
         '/genero': (context) => const GenderPage(),
         '/edad': (context) => const AgePage(),
-        '/pais': (context) => const PaisPage(),
+        '/pais': (context) => const CountryPage(),
         '/clima': (context) => const ClimaPage(),
         '/post': (context) => const PostPage(),
         '/acerca': (context) => const AcercaPage(),
