@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tarea_6/views/acerca.dart';
 import 'package:tarea_6/views/clima.dart';
 import 'package:tarea_6/views/edad.dart';
-import 'package:tarea_6/views/genero.dart';
+import 'package:tarea_6/views/gender.dart';
 import 'package:tarea_6/views/home.dart';
 import 'package:tarea_6/views/pais.dart';
 import 'package:tarea_6/views/post.dart';
@@ -25,7 +25,7 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/genero': (context) => const GeneroPage(),
+        '/genero': (context) => const GenderPage(),
         '/edad': (context) => const EdadPage(),
         '/pais': (context) => const PaisPage(),
         '/clima': (context) => const ClimaPage(),
