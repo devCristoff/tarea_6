@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tarea_6/views/acerca.dart';
+import 'package:tarea_6/views/about.dart';
 import 'package:tarea_6/views/clima.dart';
 import 'package:tarea_6/views/age.dart';
 import 'package:tarea_6/views/gender.dart';
@@ -29,7 +29,7 @@ class MainApp extends StatelessWidget {
         '/pais': (context) => const CountryPage(),
         '/clima': (context) => const ClimaPage(),
         '/post': (context) => const PostPage(),
-        '/acerca': (context) => const AcercaPage(),
+        '/acerca': (context) => const AboutPage(),
         // ... Agrega las rutas para las demás vistas
       },
     );
