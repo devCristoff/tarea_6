@@ -6,10 +6,10 @@ class GenderPage extends StatefulWidget {
   const GenderPage({super.key});
   
   @override
-  _GenderPageState createState() => _GenderPageState();
+  GenderPageState createState() => GenderPageState();
 }
 
-class _GenderPageState extends State<GenderPage> {
+class GenderPageState extends State<GenderPage> {
   final TextEditingController _nameController = TextEditingController();
   String gender = '';
 

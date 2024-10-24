@@ -6,10 +6,10 @@ class AgePage extends StatefulWidget {
   const AgePage({super.key});
 
   @override
-  _AgePageState createState() => _AgePageState();
+  AgePageState createState() => AgePageState();
 }
 
-class _AgePageState extends State<AgePage> {
+class AgePageState extends State<AgePage> {
   final TextEditingController _nameController = TextEditingController();
   int age = 0;
 
@@ -59,9 +59,6 @@ class _AgePageState extends State<AgePage> {
             const SizedBox(height: 20),
             Text('Edad estimada: $age'),
             Text(getAgeCategory(age)),
-            // Aquí puedes agregar la lógica para mostrar la imagen correspondiente
-            // Puedes utilizar un Image.asset o un Image.network
-            // Ejemplo con Image.asset:
             Image.asset(
               'assets/images/${getAgeCategory(age)}.png',
               width: 200,
