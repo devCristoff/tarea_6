@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tarea_6/views/acerca.dart';
+import 'package:tarea_6/views/clima.dart';
+import 'package:tarea_6/views/edad.dart';
+import 'package:tarea_6/views/genero.dart';
+import 'package:tarea_6/views/home.dart';
+import 'package:tarea_6/views/pais.dart';
+import 'package:tarea_6/views/post.dart';
+// ... Importaciones de las demás vistas
 
 void main() {
   runApp(const MainApp());
@@ -9,12 +17,22 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      title: 'Mi App Multifuncional',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/genero': (context) => const GeneroPage(),
+        '/edad': (context) => const EdadPage(),
+        '/pais': (context) => const PaisPage(),
+        '/clima': (context) => const ClimaPage(),
+        '/post': (context) => const PostPage(),
+        '/acerca': (context) => const AcercaPage(),
+        // ... Agrega las rutas para las demás vistas
+      },
     );
   }
 }
