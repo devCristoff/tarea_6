@@ -24,12 +24,12 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/genero': (context) => const GenderPage(),
-        '/edad': (context) => const AgePage(),
-        '/pais': (context) => const CountryPage(),
-        '/clima': (context) => const WeatherPage(),
+        '/gender': (context) => const GenderPage(),
+        '/age': (context) => const AgePage(),
+        '/country': (context) => const CountryPage(),
+        '/weather': (context) => const WeatherPage(),
         '/post': (context) => const NewsPage(),
-        '/acerca': (context) => const AboutPage(),
+        '/about': (context) => const AboutPage(),
         // ... Agrega las rutas para las demás vistas
       },
     );
