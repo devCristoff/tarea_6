@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tarea_6/views/about.dart';
-import 'package:tarea_6/views/clima.dart';
+import 'package:tarea_6/views/weather.dart';
 import 'package:tarea_6/views/age.dart';
 import 'package:tarea_6/views/gender.dart';
 import 'package:tarea_6/views/home.dart';
@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
         '/genero': (context) => const GenderPage(),
         '/edad': (context) => const AgePage(),
         '/pais': (context) => const CountryPage(),
-        '/clima': (context) => const ClimaPage(),
+        '/clima': (context) => const WeatherPage(),
         '/post': (context) => const PostPage(),
         '/acerca': (context) => const AboutPage(),
         // ... Agrega las rutas para las demás vistas
