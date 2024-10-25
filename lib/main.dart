@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
         '/edad': (context) => const AgePage(),
         '/pais': (context) => const CountryPage(),
         '/clima': (context) => const WeatherPage(),
-        '/post': (context) => const PostPage(),
+        '/post': (context) => const NewsPage(),
         '/acerca': (context) => const AboutPage(),
         // ... Agrega las rutas para las demás vistas
       },
