@@ -83,7 +83,7 @@ class AgePageState extends State<AgePage> {
               // Botón para estimar la edad con ícono
               ElevatedButton.icon(
                 onPressed: getAge,
-                icon: const Icon(FontAwesomeIcons.search, color: Colors.white),
+                icon: const Icon(FontAwesomeIcons.magnifyingGlass, color: Colors.white),
                 label: const Text('Estimar', style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),

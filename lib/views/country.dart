@@ -74,7 +74,7 @@ class CountryPageState extends State<CountryPage> {
             // Botón de búsqueda con ícono
             ElevatedButton.icon(
               onPressed: buscarUniversidades,
-              icon: const Icon(FontAwesomeIcons.search, color: Colors.white),
+              icon: const Icon(FontAwesomeIcons.magnifyingGlass, color: Colors.white),
               label:
                   const Text('Buscar', style: TextStyle(color: Colors.white)),
               style: ElevatedButton.styleFrom(

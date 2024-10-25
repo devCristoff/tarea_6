@@ -73,7 +73,7 @@ class GenderPageState extends State<GenderPage> {
               // Botón de predicción con ícono
               ElevatedButton.icon(
                 onPressed: getGender,
-                icon: const Icon(FontAwesomeIcons.search, color: Colors.white),
+                icon: const Icon(FontAwesomeIcons.magnifyingGlass, color: Colors.white),
                 label: const Text('Predecir', style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
