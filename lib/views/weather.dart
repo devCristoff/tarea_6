@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WeatherPage extends StatefulWidget {
@@ -16,6 +16,7 @@ class WeatherPageState extends State<WeatherPage> {
   String city = 'Santo Domingo';
   Map<String, dynamic> weatherData = {};
   bool isLoading = true;
+  String errorMessage = '';
 
   Future<void> fetchWeatherData() async {
     try {
@@ -26,18 +27,19 @@ class WeatherPageState extends State<WeatherPage> {
         setState(() {
           weatherData = jsonDecode(response.body);
           isLoading = false;
+          errorMessage = ''; // Limpiar mensaje de error
         });
       } else {
-        // Manejar errores
         setState(() {
           isLoading = false;
+          errorMessage = 'Error al obtener datos: ${response.statusCode}';
         });
       }
     } catch (e) {
-      // Manejar excepciones
       print('Error al obtener los datos del clima: $e');
       setState(() {
         isLoading = false;
+        errorMessage = 'No se pudo conectar al servidor';
       });
     }
   }
@@ -51,48 +53,144 @@ class WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
         title: Text('Clima en $city'),
+        backgroundColor: Colors.blueAccent,
       ),
       body: Center(
         child: isLoading
-            ? const CircularProgressIndicator()
-            : ListView(
-                children: [
-                  // Sección de la ciudad y temperatura
-                  Text(
-                    weatherData['name'],
-                    style: const TextStyle(fontSize: 24),
-                  ),
-                  Text(
-                    '${weatherData['main']['temp'].toStringAsFixed(1)} °C',
-                    style: const TextStyle(fontSize: 32),
-                  ),
-                  SvgPicture.network(
-                    'http://openweathermap.org/img/wn/${weatherData['weather'][0]['icon']}.png',
-                    height: 100,
-                    width: 100,
-                  ),
-                  // Sección de detalles adicionales
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        children: [
-                          const Icon(FontAwesomeIcons.droplet),
-                          Text('Humedad: ${weatherData['main']['humidity']}%'),
-                        ],
+            ? const CircularProgressIndicator(color: Colors.blueAccent)
+            : errorMessage.isNotEmpty
+                ? Text(
+                    errorMessage,
+                    style: const TextStyle(color: Colors.red, fontSize: 18),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Card(
+                      color: Colors.grey[850],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      Column(
-                        children: [
-                          const Icon(FontAwesomeIcons.wind),
-                          Text('Viento: ${weatherData['wind']['speed']} m/s'),
-                        ],
+                      elevation: 8,
+                      child: Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              weatherData['name'],
+                              style: const TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              '${weatherData['main']['temp'].toStringAsFixed(1)} °C',
+                              style: const TextStyle(
+                                fontSize: 48,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blueAccent,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            SvgPicture.network(
+                              'http://openweathermap.org/img/wn/${weatherData['weather'][0]['icon']}.svg',
+                              height: 100,
+                              width: 100,
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              weatherData['weather'][0]['description']
+                                  .toString()
+                                  .toUpperCase(),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.white70,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Divider(
+                              color: Colors.blueGrey[300],
+                              thickness: 1,
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  children: [
+                                    const Icon(FontAwesomeIcons.droplet,
+                                        size: 30, color: Colors.blueAccent),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Humedad',
+                                      style: TextStyle(
+                                        color: Colors.white.withOpacity(0.8),
+                                      ),
+                                    ),
+                                    Text(
+                                      '${weatherData['main']['humidity']}%',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    const Icon(FontAwesomeIcons.wind,
+                                        size: 30, color: Colors.blueAccent),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Viento',
+                                      style: TextStyle(
+                                        color: Colors.white.withOpacity(0.8),
+                                      ),
+                                    ),
+                                    Text(
+                                      '${weatherData['wind']['speed']} m/s',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    const Icon(FontAwesomeIcons.thermometerHalf,
+                                        size: 30, color: Colors.blueAccent),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Sensación',
+                                      style: TextStyle(
+                                        color: Colors.white.withOpacity(0.8),
+                                      ),
+                                    ),
+                                    Text(
+                                      '${weatherData['main']['feels_like'].toStringAsFixed(1)} °C',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
+                    ),
                   ),
-                ],
-              ),
       ),
     );
   }
